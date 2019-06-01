@@ -59,3 +59,12 @@ function removeTask(e) {
     }
     e.preventDefault();
 }
+
+function clearTasks() {
+    while (taskList.firstChild) {
+        taskList.removeChild(taskList.firstChild);
+    }
+
+    // Clear Tasks from Local Storage
+    clearTasksFromLocalStorage();
+}
