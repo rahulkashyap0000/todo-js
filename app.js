@@ -57,29 +57,28 @@ function addTask(e) {
     // If nothing added
     if (taskInput.value === "") {
         alert("Add a task");
+    } else {
+        // Create li
+        const li = document.createElement("li");
+        // li class="collection-item"
+        li.className = "collection-item";
+        // <li>taskInput</li>
+        li.appendChild(document.createTextNode(taskInput.value));
+        // Create a new link element
+        const link = document.createElement("a");
+        // Add class
+        link.className = "delete-item secondary-content";
+        // Add icon html
+        link.innerHTML = '<i class="fa fa-remove"></i>';
+        // Append the link to li
+        li.appendChild(link);
+
+        // Append li to ul
+        taskList.appendChild(li);
+
+        // Store in Local Storage
+        storeTaskInLocalStorage(taskInput.value);
     }
-
-    // Create li
-    const li = document.createElement("li");
-    // li class="collection-item"
-    li.className = "collection-item";
-    // <li>taskInput</li>
-    li.appendChild(document.createTextNode(taskInput.value));
-    // Create a new link element
-    const link = document.createElement("a");
-    // Add class
-    link.className = "delete-item secondary-content";
-    // Add icon html
-    link.innerHTML = '<i class="fa fa-remove"></i>';
-    // Append the link to li
-    li.appendChild(link);
-
-    // Append li to ul
-    taskList.appendChild(li);
-
-    // Store in Local Storage
-    storeTaskInLocalStorage(taskInput.value);
-
     //Clear input
     taskInput.value = "";
 }
@@ -123,12 +122,14 @@ function removeTaskFromLocalStorage(taskItem) {
 }
 
 function clearTasks() {
-    while (taskList.firstChild) {
-        taskList.removeChild(taskList.firstChild);
-    }
+    if (confirm("Are you sure?")) {
+        while (taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild);
+        }
 
-    // Clear Tasks from Local Storage
-    clearTasksFromLocalStorage();
+        // Clear Tasks from Local Storage
+        clearTasksFromLocalStorage();
+    }
 }
 
 function clearTasksFromLocalStorage() {
