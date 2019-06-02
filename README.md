@@ -1,6 +1,6 @@
 # Todo List
 
-This Todo List is made using pure Javascrip. There ist no framework or library involved.
+This Todo List is made using pure Javascript. There ist no framework or library involved.
 
 ## Features
 
